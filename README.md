@@ -1,6 +1,6 @@
 ## TripTale
 
-Description
+## Description
 TripTale is a web platform for travelers to create AI-powered itineraries and engage in a vibrant community. Initially focused on Yogyakarta, it connects solo travelers and backpackers (aged 18-40) with authentic local experiences, supporting small tourism businesses (tour guides, homestays, culinary). The MVP features an AI-driven itinerary planner and a community forum, built with a freemium model (free: 1 itinerary/day; premium: Rp 50,000/month for unlimited). Future plans include expansion across Southeast Asia.
 
 ## Features
