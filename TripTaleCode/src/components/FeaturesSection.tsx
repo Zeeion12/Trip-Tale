@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Bot, MessageCircle, FileText, Globe } from "lucide-react"
+import { Bot, MessageCircle, FileText } from "lucide-react"
 
 const features = [
     {
@@ -23,13 +23,6 @@ const features = [
         benefits: ["Easy editing", "Save & share", "Export PDF"],
         color: "green",
     },
-    {
-        icon: Globe,
-        title: "Konten Budaya",
-        description: "Artikel dan video tentang budaya lokal Yogyakarta untuk pengalaman autentik",
-        benefits: ["Cerita sejarah", "Tips budaya", "Hidden gems"],
-        color: "purple",
-    },
 ]
 
 export default function FeaturesSection() {
@@ -43,7 +36,7 @@ export default function FeaturesSection() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {features.map((feature, index) => {
                         const IconComponent = feature.icon
                         const colorClasses = {

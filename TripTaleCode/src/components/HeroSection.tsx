@@ -33,7 +33,7 @@ export default function HeroSection() {
                                 <MapPin className="h-6 w-6 text-orange-500" />
                             </div>
                             <div className="text-left">
-                                <div className="text-2xl font-bold text-gray-900">500+</div>
+                                <div className="text-2xl font-bold text-gray-900">100+</div>
                                 <div className="text-gray-600">Destinasi</div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ export default function HeroSection() {
                                 <Users className="h-6 w-6 text-blue-500" />
                             </div>
                             <div className="text-left">
-                                <div className="text-2xl font-bold text-gray-900">1,200+</div>
+                                <div className="text-2xl font-bold text-gray-900">100+</div>
                                 <div className="text-gray-600">Traveler Aktif</div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@ export default function HeroSection() {
                                 <Route className="h-6 w-6 text-green-500" />
                             </div>
                             <div className="text-left">
-                                <div className="text-2xl font-bold text-gray-900">3,000+</div>
+                                <div className="text-2xl font-bold text-gray-900">100+</div>
                                 <div className="text-gray-600">Itinerary Dibuat</div>
                             </div>
                         </div>

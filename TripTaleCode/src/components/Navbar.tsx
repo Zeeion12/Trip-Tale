@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { MapPin, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import TripTaleLogo from "@/assets/TripTaleLogo.png"
+
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,9 +19,7 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-2">
-                        <div className="bg-orange-500 p-2 rounded-lg">
-                            <MapPin className="h-6 w-6 text-white" />
-                        </div>
+                        <img src={TripTaleLogo} alt="TripTale Logo" className="h-8 w-8" />
                         <span className="text-xl font-bold text-gray-900">TripTale</span>
                     </Link>
 
@@ -36,8 +36,8 @@ export default function Navbar() {
                         <Link
                             to="/itinerary"
                             className={`flex items-center space-x-1 px-3 py-2 rounded-lg ${isActive("/itinerary")
-                                    ? "text-orange-500 bg-orange-50"
-                                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                                ? "text-orange-500 bg-orange-50"
+                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                                 }`}
                         >
                             <span>Buat Itinerary</span>
@@ -45,8 +45,8 @@ export default function Navbar() {
                         <Link
                             to="/forum"
                             className={`flex items-center space-x-1 px-3 py-2 rounded-lg ${isActive("/forum")
-                                    ? "text-orange-500 bg-orange-50"
-                                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                                ? "text-orange-500 bg-orange-50"
+                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                                 }`}
                         >
                             <span>Forum</span>
