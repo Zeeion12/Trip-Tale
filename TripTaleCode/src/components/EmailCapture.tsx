@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -15,6 +14,9 @@ export default function EmailCapture() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubscribed, setIsSubscribed] = useState(false)
     const { toast } = useToast()
+
+    // Mailchimp form action URL from your embed code
+    const mailchimpAction = "https://app.us16.list-manage.com/subscribe/post?u=73d6c19072d2b2be95cebefe8&id=a80e7a6b0d&f_id=008f1ee1f0"
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -30,33 +32,50 @@ export default function EmailCapture() {
 
         setIsSubmitting(true)
 
-        try {
-            // Simulate API call - replace with actual email service
-            await new Promise((resolve) => setTimeout(resolve, 1500))
+        // Method 1: Using JSONP (Works with custom form)
+        const mcUrl = "https://app.us16.list-manage.com/subscribe/post-json?u=73d6c19072d2b2be95cebefe8&id=a80e7a6b0d&f_id=008f1ee1f0"
+        const url = `${mcUrl}&EMAIL=${encodeURIComponent(email)}`
 
-            // Store in localStorage for demo (replace with actual service)
-            const subscribers = JSON.parse(localStorage.getItem("triptale_subscribers") || "[]")
-            subscribers.push({
-                email,
-                timestamp: new Date().toISOString(),
-                source: "landing_page",
-            })
-            localStorage.setItem("triptale_subscribers", JSON.stringify(subscribers))
+        // Create JSONP request
+        const script = document.createElement('script')
+        const callbackName = 'mailchimpCallback' + Date.now();
 
-            setIsSubscribed(true)
-            toast({
-                title: "🎉 Berhasil bergabung!",
-                description: "Kami akan mengirim update eksklusif ke email Anda",
-            })
-        } catch (error) {
+        // Define callback function
+        (window as any)[callbackName] = (data: any) => {
+            setIsSubmitting(false)
+
+            if (data?.result === "success") {
+                setIsSubscribed(true)
+                toast({
+                    title: "🎉 Berhasil bergabung!",
+                    description: "Kami akan mengirim update eksklusif ke email Anda. Cek email untuk konfirmasi!",
+                })
+            } else {
+                toast({
+                    title: "Gagal mendaftar",
+                    description: data?.msg || "Coba lagi dalam beberapa saat",
+                    variant: "destructive",
+                })
+            }
+
+            // Cleanup
+            document.body.removeChild(script)
+            delete (window as any)[callbackName]
+        }
+
+        script.src = `${url}&c=${callbackName}`
+        script.onerror = () => {
+            setIsSubmitting(false)
             toast({
                 title: "Gagal mendaftar",
                 description: "Coba lagi dalam beberapa saat",
                 variant: "destructive",
             })
-        } finally {
-            setIsSubmitting(false)
+            document.body.removeChild(script)
+            delete (window as any)[callbackName]
         }
+
+        document.body.appendChild(script)
     }
 
     if (isSubscribed) {
@@ -76,6 +95,15 @@ export default function EmailCapture() {
                                 📧 Cek email Anda untuk konfirmasi dan dapatkan akses early bird!
                             </p>
                         </div>
+
+                        {/* Reset button for demo purposes */}
+                        <Button
+                            onClick={() => setIsSubscribed(false)}
+                            variant="outline"
+                            className="mt-4"
+                        >
+                            Reset Demo
+                        </Button>
                     </div>
                 </div>
             </section>
@@ -158,7 +186,7 @@ export default function EmailCapture() {
                                 </div>
                             </div>
                             <p className="text-sm text-gray-600 italic">
-                                "Gak sabar nyoba AI itinerary-nya! Pasti bakal memudahkan planning trip ke Jogja"
+                                "Gak sabar nyoba AI itinerary-nya! Pasti bakal memudahkan planning trip ke Jogja" {" "}
                                 <span className="font-medium">- Sarah, Jakarta</span>
                             </p>
                         </div>
