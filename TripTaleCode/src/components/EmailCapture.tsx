@@ -15,8 +15,8 @@ export default function EmailCapture() {
     const [isSubscribed, setIsSubscribed] = useState(false)
     const { toast } = useToast()
 
-    // Mailchimp form action URL from your embed code
-    const mailchimpAction = "https://app.us16.list-manage.com/subscribe/post?u=73d6c19072d2b2be95cebefe8&id=a80e7a6b0d&f_id=008f1ee1f0"
+    // Mailchimp JSONP URL untuk subscription
+    const mailchimpUrl = "https://app.us16.list-manage.com/subscribe/post-json?u=73d6c19072d2b2be95cebefe8&id=a80e7a6b0d&f_id=008f1ee1f0"
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -33,8 +33,7 @@ export default function EmailCapture() {
         setIsSubmitting(true)
 
         // Method 1: Using JSONP (Works with custom form)
-        const mcUrl = "https://app.us16.list-manage.com/subscribe/post-json?u=73d6c19072d2b2be95cebefe8&id=a80e7a6b0d&f_id=008f1ee1f0"
-        const url = `${mcUrl}&EMAIL=${encodeURIComponent(email)}`
+        const url = `${mailchimpUrl}&EMAIL=${encodeURIComponent(email)}`
 
         // Create JSONP request
         const script = document.createElement('script')
