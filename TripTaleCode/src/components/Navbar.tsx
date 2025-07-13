@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { MapPin, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import TripTaleLogo from "@/assets/TripTaleLogo.png"
 
 
 export default function Navbar() {
@@ -19,7 +18,7 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-2">
-                        <img src={TripTaleLogo} alt="TripTale Logo" className="h-8 w-8" />
+                        {/* <img src="/TripTaleCode/public/TripTaleLogo.png" alt="TripTale Logo" className="h-8 w-8" /> */}
                         <span className="text-xl font-bold text-gray-900">TripTale</span>
                     </Link>
 
